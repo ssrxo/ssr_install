@@ -1,0 +1,19 @@
+{
+  "name": "ssr_install",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "dependencies": {
+    "download-git-repo": "^3.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.17"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "./index.d.ts"
+}
