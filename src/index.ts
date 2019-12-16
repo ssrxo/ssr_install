@@ -6,6 +6,7 @@ import { installInterface, installReturnInterface } from "./interface"
 import { defaultDir, defaultDirName, mirror } from "./const"
 import path from 'path'
 import fs from 'fs'
+import mkdirp from 'mkdirp'
 
 const download = require('download-git-repo')
 
@@ -23,6 +24,13 @@ export default class ssrInstall {
   }) {
     const { path: dir, dirname } = conf
     const full_path = path.join(dir, dirname)
+    if (!fs.existsSync(full_path)) {
+      try {
+        mkdirp.sync(full_path)
+      } catch (error) {
+        console.log('error: ', error)
+      }
+    }
     this.full_path = full_path
     this.base_path = dir
     this.dirname = dirname
@@ -44,7 +52,7 @@ export default class ssrInstall {
     const github: string = (this.mirror as any)[0]
     try {
       error = await new Promise(rcv=> {
-        download(github, defaultDir, (status: any) => {
+        download(github, this.full_path, (status: any) => {
           console.log('状态: ', status)
           rcv(status ? false : true)
         })
@@ -93,12 +101,9 @@ export const install = async (config: installInterface): Promise<installReturnIn
 }
 
 ;(async ()=> {
-  console.log('start..')
-  const dev = new ssrInstall({
-    path: `/root/workspace`,
+  const options = {
+    path: process.cwd(),
     dirname: `wrapper`
-  })
-  const 状态 = await dev.install()
-  console.log(状态)
-  console.log('end: ', dev.full_path)
+  }
+  console.log(await ssrInstall.check(options))
 })()
