@@ -100,10 +100,10 @@ export const install = async (config: installInterface): Promise<installReturnIn
   return (await ssrInstall.install(config))
 }
 
-;(async ()=> {
-  const options = {
-    path: process.cwd(),
-    dirname: `wrapper`
-  }
-  console.log(await ssrInstall.check(options))
-})()
+// ;(async ()=> {
+//   const options = {
+//     path: process.cwd(),
+//     dirname: `wrapper`
+//   }
+//   console.log(await ssrInstall.check(options))
+// })()

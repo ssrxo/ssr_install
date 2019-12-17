@@ -1,6 +1,6 @@
 {
   "name": "ssr_install",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "dist/index.js",
   "dependencies": {
@@ -12,10 +12,10 @@
     "@types/node": "^12.12.17"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "publish": "tsc && npm publish"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "type": "./index.d.ts"
 }
